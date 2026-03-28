@@ -1,11 +1,10 @@
-# Excluded from version control (coursework instruction)
+# Local / optional files (not part of this repo layout)
 report_skeleton.docx
-
-# Local / tooling
+*.docx
 rendered/
 __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
-*.tmp
 ~$*
+ai_use_appendix_template.txt

@@ -1,138 +1,51 @@
-# BTS Mobility Data Analysis (5004CMD)
+# 5004CMD — BTS mobility analysis
 
 **Module:** 5004CMD Data Science  
 
-Coursework project analysing Bureau of Transportation Statistics (BTS)–style national mobility extracts using **sequential Pandas** and **parallel Dask** workflows, with exploratory plots, threshold screening, linear regression, and runtime benchmarking.
+**Repository:** [https://github.com/Zyfiury/5004CMD-Data-Science](https://github.com/Zyfiury/5004CMD-Data-Science)
 
----
+This repository contains the coursework **PDF report** (`5004CMD_Project_Report.pdf`), analysis script, datasets, timing output, and figure PNGs.
 
-## Datasets
+## Contents
 
-| File | Description |
+| Item | Description |
 |------|-------------|
-| **Trips_by_Distance.csv** | Daily records with `Level`, `Date`, `Week`, population staying at home / not staying at home, aggregate trip counts, and binned fields such as `Number of Trips 5-10`, `Number of Trips 10-25`, and related distance bands. |
-| **Trips_Full Data.csv** | Daily national records with distance-stratified columns (`Trips <1 Mile` through `Trips 500+ Miles`), plus population and aggregate trip fields used for distance summaries and regression inputs. |
+| `5004CMD_Project_Report.pdf` | Final coursework report (includes repository link in the Introduction). |
+| `analysis.py` | Loads data, cleans National rows, plots figures, threshold analysis, regression, serial vs Dask timings. |
+| `Trips_by_Distance.csv` | Distance-bin trip counts (Git LFS — large file). |
+| `Trips_Full Data.csv` | Full-data distance columns and related fields. |
+| `timing_results.csv` | Serial and parallel runtimes. |
+| `figures/` | Six PNG charts produced by the script. |
 
-Both files are filtered to **National** level for consistent geography; dates are parsed as datetimes; duplicates are removed; redundant geographic columns are dropped where applicable before aggregation.
-
----
-
-## Analysis workflow (`analysis.py`)
-
-1. **Load** both CSVs (Pandas for serial; Dask for parallel).  
-2. **Clean** to National rows, drop duplicates, and remove unnecessary location columns from the distance file.  
-3. **Weekly aggregation** — group by `Week` and compute mean population staying at home and not staying at home; save bar charts (**Figure 1**, **Figure 2**).  
-4. **Distance means** — column means of distance bands on National rows; save **Figure 3** and **Figure 6**.  
-5. **Threshold analysis** — select days where `Number of Trips 10-25` or `Number of Trips 50-100` exceed **10,000,000**; scatter plot (**Figure 4**).  
-6. **Regression** — inner merge on `Date`: predictor `Trips 1-25 Miles` (full data), response `Number of Trips 5-10` (distance file); fit `LinearRegression`; report **R²**, **RMSE**, coefficient, intercept; save **Figure 5**.  
-7. **Timing** — record wall-clock time for full serial run vs Dask runs with **10** and **20** workers; write `timing_results.csv`.
-
-Outputs: `figures/*.png`, `timing_results.csv`, and console summaries.
-
----
-
-## Threshold analysis
-
-A fixed cutoff of **ten million trips** highlights extremely high–volume national days for selected bins (`10–25` and `50–100` mile categories in the distance extract). This supports comparison of how often **medium-distance** movement reaches exceptional daily counts relative to a longer band, without fitting a full extreme-value model.
-
----
-
-## Linear regression
-
-The model relates **Trips 1-25 Miles** to **Number of Trips 5-10** on matched calendar dates. **Ordinary least squares** yields a slope and intercept; **R²** measures explained variance; **RMSE** measures typical absolute error in trip-count units. The fitted line and scatter are saved as **Figure 5**.
-
----
-
-## Parallel processing: Pandas vs Dask
-
-- **Pandas (serial):** single-process execution—low coordination overhead, suitable baseline.  
-- **Dask (distributed):** local cluster with multiple workers—parallel CSV reads and partitioned operations; introduces **scheduler and communication overhead**, which can dominate for **moderate** data sizes.  
-
-Reported timings (example coursework run) are written to `timing_results.csv` and discussed in the submitted report.
-
----
-
-## Software requirements
-
-- Python **3.10+** recommended  
-- **pandas**, **numpy**, **matplotlib**, **scikit-learn**, **dask**, **distributed**  
-- **pyarrow** (often required by recent Dask dataframe stacks)  
-- Optional (to rebuild the Word report): **python-docx**
-
-Install dependencies:
+## Requirements
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn dask distributed pyarrow
 ```
 
-Optional:
+## Run
 
-```bash
-pip install python-docx
-```
-
----
-
-## Running the analysis
-
-From the repository root (same directory as `analysis.py` and the CSV files):
+From the repository root:
 
 ```bash
 python analysis.py
 ```
 
-On Windows, if Matplotlib raises threading errors in some environments, use:
+If Matplotlib shows threading errors on Windows:
 
 ```powershell
 $env:MPLBACKEND = "Agg"
 python analysis.py
 ```
 
-After a successful run you should see serial and parallel timings, regression metrics, and threshold counts in the terminal, with PNGs under `figures/` and `timing_results.csv` updated.
+## Clone (large CSV)
 
-### Rebuilding the coursework Word report
-
-If `python-docx` and Microsoft Word (for PDF export on Windows) are available:
+Install [Git LFS](https://git-lfs.github.com/), then:
 
 ```bash
-python build_5004cmd_report.py
-```
-
-This regenerates `5004CMD_Project_Report.docx` and attempts to export `5004CMD_Project_Report.pdf`.
-
----
-
-## Repository layout (submission-related)
-
-| Item | Role |
-|------|------|
-| `analysis.py` | Main analytics and benchmarking script |
-| `build_5004cmd_report.py` | Generates the structured Word/PDF report |
-| `5004CMD_Project_Report.docx` | Submitted report (binary) |
-| `figures/` | Six coursework figures (PNG) |
-| `timing_results.csv` | Serial vs parallel timing summary |
-| `pseudocode_appendix.txt` / `flowchart_appendix.txt` | Appendix source text |
-
-`report_skeleton.docx` is intentionally **not** tracked (see `.gitignore`).
-
----
-
-## Repository
-
-**Public URL:** [https://github.com/Zyfiury/5004CMD-Data-Sciense](https://github.com/Zyfiury/5004CMD-Data-Sciense)
-
-Clone (large CSV uses **Git LFS**; install [Git LFS](https://git-lfs.github.com/) first):
-
-```bash
-git clone https://github.com/Zyfiury/5004CMD-Data-Sciense.git
-cd 5004CMD-Data-Sciense
+git clone https://github.com/Zyfiury/5004CMD-Data-Science.git
+cd 5004CMD-Data-Science
 git lfs pull
 ```
 
-`Trips_by_Distance.csv` is tracked with Git LFS because it exceeds GitHub’s 100 MB file limit.
-
----
-
-## Licence / academic use
-
-This repository is provided for **academic coursework** submission. Dataset rights remain with their original publishers; use the mobility extracts only in line with your module and data-provider terms.
+If the remote still uses the previous repository name, use the URL shown on your GitHub **Code** button.
