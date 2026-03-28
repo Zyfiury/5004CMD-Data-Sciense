@@ -2,7 +2,9 @@
 
 **Module:** 5004CMD Data Science  
 
-**Repository:** [https://github.com/Zyfiury/5004CMD-Data-Science](https://github.com/Zyfiury/5004CMD-Data-Science)
+**Published repository:** [https://github.com/Zyfiury/5004CMD-Data-Sciense](https://github.com/Zyfiury/5004CMD-Data-Sciense)  
+
+The report Introduction links to `https://github.com/Zyfiury/5004CMD-Data-Science` (spelling **Science**). If you rename the GitHub repository to match that URL, update the remote with `git remote set-url origin https://github.com/Zyfiury/5004CMD-Data-Science.git`.
 
 This repository contains the coursework **PDF report** (`5004CMD_Project_Report.pdf`), analysis script, datasets, timing output, and figure PNGs.
 
@@ -43,9 +45,7 @@ python analysis.py
 Install [Git LFS](https://git-lfs.github.com/), then:
 
 ```bash
-git clone https://github.com/Zyfiury/5004CMD-Data-Science.git
-cd 5004CMD-Data-Science
+git clone https://github.com/Zyfiury/5004CMD-Data-Sciense.git
+cd 5004CMD-Data-Sciense
 git lfs pull
 ```
-
-If the remote still uses the previous repository name, use the URL shown on your GitHub **Code** button.
