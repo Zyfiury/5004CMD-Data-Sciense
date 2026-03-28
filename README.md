@@ -117,18 +117,19 @@ This regenerates `5004CMD_Project_Report.docx` and attempts to export `5004CMD_P
 
 ---
 
-## Publishing this folder to GitHub
+## Repository
 
-1. On GitHub, create a **public** repository named **`5004CMD-BTS-Mobility-Analysis`** (empty, no README).  
-2. From this project directory (if Git is not yet initialised, run `git init` and commit as below), add the remote and push:
+**Public URL:** [https://github.com/Zyfiury/5004CMD-Data-Sciense](https://github.com/Zyfiury/5004CMD-Data-Sciense)
+
+Clone (large CSV uses **Git LFS**; install [Git LFS](https://git-lfs.github.com/) first):
 
 ```bash
-git branch -M main
-git remote add origin https://github.com/<your-username>/5004CMD-BTS-Mobility-Analysis.git
-git push -u origin main
+git clone https://github.com/Zyfiury/5004CMD-Data-Sciense.git
+cd 5004CMD-Data-Sciense
+git lfs pull
 ```
 
-Replace `<your-username>` with your GitHub username. After the first push, replace `INSERT_REPOSITORY_LINK_HERE` in `5004CMD_Project_Report.docx` (end of the Introduction) with your public repository URL, then save the document.
+`Trips_by_Distance.csv` is tracked with Git LFS because it exceeds GitHub’s 100 MB file limit.
 
 ---
 
