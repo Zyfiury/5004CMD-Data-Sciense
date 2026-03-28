@@ -1,0 +1,11 @@
+# Excluded from version control (coursework instruction)
+report_skeleton.docx
+
+# Local / tooling
+rendered/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.tmp
+~$*

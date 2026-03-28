@@ -1,0 +1,51 @@
+Appendix A.1 Flowchart Draft
+
+Start
+↓
+Load Trips_by_Distance.csv and Trips_Full Data.csv
+↓
+Convert Date fields
+↓
+Filter National level rows
+↓
+Clean and remove irrelevant columns
+↓
+Question 1:
+Compute weekly home and non-home averages
+↓
+Create weekly bar charts
+↓
+Question 2:
+Filter dates above 10,000,000 for 10-25 and 50-100 trip ranges
+↓
+Create threshold comparison scatter plot
+↓
+Question 3:
+Align dates and train linear regression model
+↓
+Evaluate RMSE and R2
+↓
+Create regression figure
+↓
+Question 4:
+Compute average travellers by distance category
+↓
+Create distance-trip bar chart
+↓
+Run serial workflow
+↓
+Record time
+↓
+Run parallel workflow with 10 workers
+↓
+Record time
+↓
+Run parallel workflow with 20 workers
+↓
+Record time
+↓
+Create timing comparison table
+↓
+Insert outputs into scientific paper
+↓
+End
