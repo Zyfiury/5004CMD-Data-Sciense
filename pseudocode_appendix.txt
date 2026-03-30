@@ -1,0 +1,48 @@
+Appendix A.2 Pseudocode
+
+Algorithm: BTS Mobility Analysis Workflow
+Input:
+- Trips_by_Distance.csv
+- Trips_Full Data.csv
+
+Output:
+- Weekly home and non-home analysis
+- Threshold comparison for trip ranges
+- Regression model metrics
+- Distance-based plots
+- Serial and parallel timing comparison
+
+Begin
+1. Load both datasets.
+2. Convert Date columns to date format.
+3. Filter both datasets to National level only.
+4. Remove unused location columns from Trips_by_Distance data.
+5. Remove duplicate rows.
+6. Group Trips_by_Distance data by Week.
+7. Compute the average values for:
+   7.1 Population Staying at Home
+   7.2 Population Not Staying at Home
+8. Plot weekly bar charts for home and non-home populations.
+9. From Trips_by_Distance data, select rows where:
+   9.1 Number of Trips 10-25 > 10,000,000
+   9.2 Number of Trips 50-100 > 10,000,000
+10. Count matching dates for each condition.
+11. Plot a scatter chart to compare the two threshold groups.
+12. Match date ranges between the two datasets.
+13. Build a linear regression model using:
+    13.1 Predictor: Trips 1-25 Miles
+    13.2 Response: Number of Trips 5-10
+14. Generate model predictions.
+15. Calculate RMSE and R2.
+16. Plot the regression scatter graph and fitted line.
+17. Compute average travellers by distance category from Trips_Full Data.
+18. Plot the distance-trip bar chart.
+19. Run the workflow in serial mode.
+20. Record the serial execution time.
+21. Run the workflow in parallel mode with 10 workers.
+22. Record the 10-worker execution time.
+23. Run the workflow in parallel mode with 20 workers.
+24. Record the 20-worker execution time.
+25. Compare all recorded timings in a summary table.
+26. Save charts and timing outputs for the report.
+End
