@@ -1,25 +1,21 @@
 # 5004CMD — BTS mobility analysis
 
-**Module:** 5004CMD Data Science  
+Coursework repository: Word report, analysis script, datasets, timings, and figures.
 
-**Published repository:** [https://github.com/Zyfiury/5004CMD-Data-Sciense](https://github.com/Zyfiury/5004CMD-Data-Sciense)  
-
-The report Introduction links to `https://github.com/Zyfiury/5004CMD-Data-Science` (spelling **Science**). If you rename the GitHub repository to match that URL, update the remote with `git remote set-url origin https://github.com/Zyfiury/5004CMD-Data-Science.git`.
-
-This repository contains the coursework **PDF report** (`5004CMD_Project_Report.pdf`), analysis script, datasets, timing output, and figure PNGs.
+**Repository:** [github.com/Zyfiury/5004CMD-Data-Sciense](https://github.com/Zyfiury/5004CMD-Data-Sciense)
 
 ## Contents
 
-| Item | Description |
-|------|-------------|
-| `5004CMD_Project_Report.pdf` | Final coursework report (includes repository link in the Introduction). |
-| `analysis.py` | Loads data, cleans National rows, plots figures, threshold analysis, regression, serial vs Dask timings. |
-| `Trips_by_Distance.csv` | Distance-bin trip counts (Git LFS — large file). |
-| `Trips_Full Data.csv` | Full-data distance columns and related fields. |
-| `timing_results.csv` | Serial and parallel runtimes. |
-| `figures/` | Six PNG charts produced by the script. |
+| File / folder | Description |
+|---------------|-------------|
+| `5004CMD_Project_Report.docx` | Final report (APA 7 in-text citations and reference list). |
+| `analysis.py` | Serial Pandas and parallel Dask workflow, plots, regression, timings. |
+| `Trips_by_Distance.csv` | Distance-bin trips (large file — **Git LFS**). |
+| `Trips_Full Data.csv` | Full-data distance columns. |
+| `timing_results.csv` | Serial vs parallel runtimes. |
+| `figures/` | Six PNG figures from the script. |
 
-## Requirements
+## Setup
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn dask distributed pyarrow
@@ -27,25 +23,22 @@ pip install pandas numpy matplotlib scikit-learn dask distributed pyarrow
 
 ## Run
 
-From the repository root:
-
 ```bash
 python analysis.py
 ```
 
-If Matplotlib shows threading errors on Windows:
+On Windows, if Matplotlib errors:
 
 ```powershell
-$env:MPLBACKEND = "Agg"
-python analysis.py
+$env:MPLBACKEND = "Agg"; python analysis.py
 ```
 
-## Clone (large CSV)
-
-Install [Git LFS](https://git-lfs.github.com/), then:
+## Clone (LFS)
 
 ```bash
 git clone https://github.com/Zyfiury/5004CMD-Data-Sciense.git
 cd 5004CMD-Data-Sciense
 git lfs pull
 ```
+
+Export an updated PDF from Word (**File → Save As → PDF**) if you need a `5004CMD_Project_Report.pdf` copy locally; it is not stored in this repository.
